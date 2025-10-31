@@ -7,7 +7,7 @@ COPY ./facesdk.py .
 COPY ./facebox.py .
 COPY ./app.py .
 COPY ./requirements.txt .
-COPY ./data ./data
+# COPY ./data ./data
 RUN pip3 install -r requirements.txt
 CMD [ "python3", "app.py"]
 EXPOSE 8080
