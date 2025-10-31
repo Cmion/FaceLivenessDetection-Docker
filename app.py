@@ -41,6 +41,8 @@ try:
         license = file.read()
 except IOError as exc:
     print("failed to open license.txt: ", exc.errno)
+
+license = os.environ.get("LICENSE", "")
 print("license: ", license)
 
 ret = setActivation(license.encode('utf-8'))
@@ -272,4 +274,4 @@ def check_liveness_base64():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='::', port=port)
