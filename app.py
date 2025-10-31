@@ -278,4 +278,5 @@ def check_liveness_base64():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
-    app.run(host='::', port=port)
+    # app.run(host='::', port=port)
+    app.run('0.0.0.0', port=port)
