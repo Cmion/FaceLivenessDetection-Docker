@@ -31,18 +31,22 @@ luminanceLightThreshold = 200
 maxFaceCount = 10
 
 licensePath = "license.txt"
-license = ""
+license = os.environ.get("LICENSE", "")
 
 machineCode = getMachineCode()
 print("machineCode: ", machineCode.decode('utf-8'))
 
-try:
-    with open(licensePath, 'r') as file:
-        license = file.read()
-except IOError as exc:
-    print("failed to open license.txt: ", exc.errno)
+# If not in environment, try reading from file
+if not license:
+    try:
+        with open(licensePath, 'r') as file:
+            license = file.read().strip()
+    except IOError as exc:
+        print(f"failed to open license.txt: {exc.errno}")
 
-license = os.environ.get("LICENSE", "")
+if not license:
+    print("WARNING: No license found in environment or file!")
+
 print("license: ", license)
 
 ret = setActivation(license.encode('utf-8'))
